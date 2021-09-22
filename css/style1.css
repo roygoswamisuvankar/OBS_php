@@ -1,0 +1,74 @@
+/*
+To change this license header, choose License Headers in Project Properties.
+To change this template file, choose Tools | Templates
+and open the template in the editor.
+*/
+/* 
+    Created on : 22 Sep, 2021, 12:49:00 PM
+    Author     : USER
+*/
+body{
+    margin: 0;
+    padding: 0;
+}
+/*heading*/
+h1{
+    position: absolute;
+    left: 40%;
+    color: #407638;
+}
+.navbar{
+    overflow: hidden;
+    position: absolute;
+    top: 20%;
+    left: 10%;
+    color: brown;
+}
+/*registration form*/
+.regis_sec{
+    position: absolute;
+    top: 30%;
+    left: 10%;
+}
+.navbar a{
+    text-align: center;
+    text-decoration: none;
+    float: left;
+    padding: 16px 14px;
+    font-size: 20px;
+    color: brown;
+}
+
+input[type=text], input[type=date], input[type=radio], input[type=email]{
+    padding: 12px 12px;
+    color: black;
+    
+}
+input[type=submit]{
+    color: white;
+    padding: 14px 16px;
+    background-color: #407638;
+    cursor: pointer;
+    border: none;
+    border-radius: 5px;
+}
+input[type=submit]:hover{
+    color: white;
+    background-color: #407638;
+    opacity: 0.8;
+}
+select{
+    padding: 12px 12px;
+    color: black;
+    border-radius: 3px;
+}
+/*icon image*/
+
+#icon{
+    width: 300px;
+    height: 300px;
+    border-radius: 50%;
+    position: absolute;
+    top: 20%;
+    left: 65%;
+}

@@ -14,7 +14,7 @@ and open the template in the editor.
         <script src="https://code.jquery.com/jquery-1.12.4.min.js"></script>
         <script src="https://code.jquery.com/jquery-3.6.0.js"></script>
         <script src="script/script.js" type="text/javascript"></script>
-        <link href="css/style.css" rel="stylesheet" type="text/css"/>
+        <link href="css/style1.css" rel="stylesheet" type="text/css"/>
         <script src="https://unpkg.com/sweetalert/dist/sweetalert.min.js"></script>
         <script>
             var app = angular.module('myapp', []);
@@ -27,26 +27,27 @@ and open the template in the editor.
         <div>
             <div class="container">
                 <div>
-                    <div class="heading"><h1>Quick Cash</h1></div>
+                    <div class="heading">
+                        <h1>Quick Cash</h1>
+                    </div>
                 </div>
                 <div>
                     <div class="navbar">
-                        <ul>
-                            <li><a class="login" href="#">Login</a></li>
-                            <li><a class="regis" href="#">Create Account</a></li>
-                        </ul>
+                        <a class="login" href="#">Login</a>
+                        <a> | </a>
+                        <a class="regis" href="#">Create Account</a>
                     </div>
                 </div>
                 <div>
                     <div class="login_sec">
-                        <h1>Login</h1>
+                        login
                     </div>
                     <div class="regis_sec">
                         <form action="createaccount.php" method="post" ng-app="myapp" ng-controller="validctrl" name="myform" novalidate>
                             <!--First Name input field -->
-                            <input type="text" name="fname" placeholder="Enter Your First Name" ng-model="fname" ng-pattern="/^[a-zA-Z ]*$/" required/>
+                            <input type="text" name="fname" placeholder="Ex: John" ng-model="fname" ng-pattern="/^[a-zA-Z ]*$/" required/>
                             <!-- Last Name input field -->
-                            <input type="text" name="lname" placeholder="Enter Your Last Name" ng-model="lname" ng-pattern="/^[a-zA-Z ]*$/" required/>
+                            <input type="text" name="lname" placeholder="Ex: Smith" ng-model="lname" ng-pattern="/^[a-zA-Z ]*$/" required/>
                             
                             <!-- First Name validation --><br/>
                             <span style="color: red" ng-show="myform.fname.$dirty && myform.fname.$invalid">
@@ -60,9 +61,9 @@ and open the template in the editor.
                             </span><br/>
                             
                             <!-- Email address input field -->
-                            <input type="email" name="email" placeholder="Enter your Email address" ng-model="email" required />
+                            <input type="email" name="email" placeholder="Ex: someone@gmail.com" ng-model="email" required />
                             <!--phone number input field -->
-                            <input type="text" name="phone" placeholder="Enter your Contact Number" ng-model="phone" ng-pattern="/^\+?\d{10}$/" maxlength="10" required />
+                            <input type="text" name="phone" placeholder="Ex: 9887223456" ng-model="phone" ng-pattern="/^\+?\d{10}$/" maxlength="10" required />
                             
                             <!-- Email validation --><br/>
                             <span style="color: red" ng-show="myform.email.$dirty && myform.email.$invalid">
@@ -106,7 +107,7 @@ and open the template in the editor.
                             </span><br/>
                             
                             <!-- Document number field -->
-                            <input type="text" name="card_no" ng-model="card_no" placeholder="Enter your ID card number" maxlength="12" ng-pattern="/^\+?\d{12}$/" required /><br/>
+                            <input type="text" name="card_no" ng-model="card_no" placeholder="Ex: 123 456 789" maxlength="12" ng-pattern="/^\+?\d{12}$/" required /><br/>
                             <!-- Document number validation -->
                             <span style="color: red" ng-show="myform.card_no.$dirty && myform.card_no.$invalid">
                                 <span ng-show="myform.card_no.$error.required">*Your Id number is required</span>
@@ -116,6 +117,11 @@ and open the template in the editor.
                             <input type="submit" value="Submit" name="submit" ng-disabled="myform.$invalid" />
                         </form>
                     </div>
+                </div>
+            </div>
+            <div>
+                <div class="side">
+                    <img src="pics/icoon.png" alt="" id="icon"/>
                 </div>
             </div>
         </div>

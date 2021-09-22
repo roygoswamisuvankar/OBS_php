@@ -13,7 +13,7 @@ and open the template in the editor.
     <body>
         <?php
                 include_once 'dbconfig.php';
-                
+                //fetch some data from database user
                 $result = mysqli_query($connect, "Select *from user");
         ?>
 <?php
@@ -41,6 +41,7 @@ and open the template in the editor.
         echo $diff->y;
         
         while($res = mysqli_fetch_array($result)){
+            //check email already exits or not
             if($res['email'] == $email){
                 echo '<script>swal({
                                       title: "Error!",
@@ -50,6 +51,7 @@ and open the template in the editor.
                                             window.location = "login.php";
                                     });</script>';
             }
+            //check phone number already exits or not
             elseif($res['phone'] == $phone){
                 echo '<script>swal({
                                         title: "Error!",
@@ -59,6 +61,7 @@ and open the template in the editor.
                                             window.location = "login.php";
                                     });</script>';
             }
+            //check card no. ID already exits or not
             elseif($res['card_no'] == $card_no){
                 echo '<script>swal({
                                         title: "Error!",
@@ -67,7 +70,9 @@ and open the template in the editor.
                                     }).then(function() {
                                             window.location = "login.php";
                                     });</script>';
-            }elseif($diff->y < 18){
+            }
+            //check user is 18 years old or not
+            elseif($diff->y < 18){
                 echo '<script>swal({
                                         title: "Error!",
                                         text: "User maust be 18 years old required",
@@ -76,6 +81,7 @@ and open the template in the editor.
                                             window.location = "login.php";
                                     });</script>';
             }
+            //after all checking data will be saved in data base user
             else{
                 $query = ("insert into user(fname,lname,email,phone,dob,gender,document,card_no) values('$fname','$lname','$email','$phone','$dob','$gender','$document','$card_no')");
         
