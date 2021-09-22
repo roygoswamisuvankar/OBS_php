@@ -15,6 +15,7 @@ and open the template in the editor.
         <script src="https://code.jquery.com/jquery-3.6.0.js"></script>
         <script src="script/script.js" type="text/javascript"></script>
         <link href="css/style.css" rel="stylesheet" type="text/css"/>
+        <script src="https://unpkg.com/sweetalert/dist/sweetalert.min.js"></script>
         <script>
             var app = angular.module('myapp', []);
             app.controller('validctrl', function($scope){
