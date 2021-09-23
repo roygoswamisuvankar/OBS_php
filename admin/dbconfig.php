@@ -12,6 +12,6 @@ $dbPass = "";
 
 $connect = mysqli_connect($dbHost, $dbUser, $dbPass, $dbName) or die ("Connection failed...");
 
-echo "connected successfully...";
+//echo "connected successfully...";
 ?>
 

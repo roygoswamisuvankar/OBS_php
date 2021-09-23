@@ -1,0 +1,65 @@
+/*
+To change this license header, choose License Headers in Project Properties.
+To change this template file, choose Tools | Templates
+and open the template in the editor.
+*/
+/* 
+    Created on : 23 Sep, 2021, 9:20:11 PM
+    Author     : USER
+*/
+#icon{
+    border-radius: 50%;
+    width: 120px;
+    height: 120px;
+    position: relative;
+    left: 20%;
+}
+.head{
+    font-size: 30px;
+    color: green;
+    font-weight: bold;
+}
+.logoutbutton{
+    float: right;
+    padding: 12px 14px;
+    border-radius: 5px;
+    background-color: red;
+    cursor: pointer;
+    font-size: 15px;
+    font-weight: bold;
+}
+.logoutbutton a{
+    text-decoration: none;
+    color: white;
+}
+.line{
+    border: 2px solid whitesmoke;
+    width: 180px;
+}
+.sidenav {
+  height: 100%;
+  width: 200px;
+  position: fixed;
+  z-index: 1;
+  top: 0;
+  left: 0;
+  background-color: green;
+  overflow-x: hidden;
+  padding-top: 20px;
+}
+
+.sidenav a {
+  padding: 6px 8px 6px 16px;
+  text-decoration: none;
+  font-size: 17px;
+  color: white;
+  display: block;
+}
+.content {
+  margin-left: 250px; /* Same as the width of the sidenav */
+  font-size: 12px; /* Increased text to enable scrolling */
+  padding: 0px 10px;
+}
+
+
+

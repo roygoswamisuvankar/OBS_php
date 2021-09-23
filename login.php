@@ -17,13 +17,18 @@ and open the template in the editor.
         <link href="css/style1.css" rel="stylesheet" type="text/css"/>
         <script src="https://unpkg.com/sweetalert/dist/sweetalert.min.js"></script>
         <script>
-            var app = angular.module('myapp', []);
-            app.controller('validctrl', function($scope){
+            var rootApp = angular.module('rootApp', ['myapp','myapp1']);
+            var app = angular.module('myapp',[]);
+            app.controller('validctrl',function($scope){
+               
+            });
+            var app1 = angular.module('myapp1',[]);
+            app1.controller('validcontrol',function($scope){
                 
             });
         </script>
     </head>
-    <body>
+    <body ng-app="rootApp">
         <div>
             <div class="container">
                 <div>
@@ -40,14 +45,27 @@ and open the template in the editor.
                 </div>
                 <div>
                     <div class="login_sec">
-                        login
+                        <form action="#" method="post" name="myform" ng-app="myapp1" ng-controller="validcontrol" novalidate >
+                            <input type="text" name="username" placeholder="Enter your Phone Number " ng-model="usename" ng-pattern="/^\+?\d{10}$/" maxlength="10" required/><br/>
+                             <span style="color: red" ng-show="myform.username.$dirty && myform.username.$invalid">
+                                <span ng-show="myform.username.$error.required">*Phone Number is required</span>
+                                <span ng-show="myform.username.$error.pattern" >*Enter valid Contact Number</span>
+                             </span><br/>
+                            
+                             <input type="password" name="pass" placeholder="Enter your password" ng-model="pass" required=""/><br/>
+                            <span style="color: red" ng-show="myform.pass.$dirty && myform.pass.$invalid">
+                                <span ng-show="myform.pass.$error.required">*Password is required</span>
+                            </span><br/>
+                            
+                            <input type="submit" value="Login" name="login" ng-disabled="myform.$invalid" />
+                        </form>
                     </div>
                     <div class="regis_sec">
                         <form action="createaccount.php" method="post" ng-app="myapp" ng-controller="validctrl" name="myform" novalidate>
                             <!--First Name input field -->
-                            <input type="text" name="fname" placeholder="Ex: John" ng-model="fname" ng-pattern="/^[a-zA-Z ]*$/" required/>
+                            <input type="text" name="fname" placeholder="Ex: John" ng-model="fname" ng-pattern="/^[a-zA-Z ]*$/" style="text-transform: capitalize" required/>
                             <!-- Last Name input field -->
-                            <input type="text" name="lname" placeholder="Ex: Smith" ng-model="lname" ng-pattern="/^[a-zA-Z ]*$/" required/>
+                            <input type="text" name="lname" placeholder="Ex: Smith" ng-model="lname" ng-pattern="/^[a-zA-Z ]*$/" style="text-transform: capitalize" required/>
                             
                             <!-- First Name validation --><br/>
                             <span style="color: red" ng-show="myform.fname.$dirty && myform.fname.$invalid">
@@ -113,6 +131,8 @@ and open the template in the editor.
                                 <span ng-show="myform.card_no.$error.required">*Your Id number is required</span>
                                 <span ng-show="myform.card_no.$error.pattern" >*Enter valid id number</span>
                             </span><br/>
+                            <?php $nowtime = new DateTime('now', new DateTimeZone('Asia/Kolkata')); ?>
+                            <input type="hidden" name="datetime" value="<?php echo $nowtime->format('d-m-Y H:i:s a'); ?>" />
                             
                             <input type="submit" value="Submit" name="submit" ng-disabled="myform.$invalid" />
                         </form>
@@ -121,7 +141,7 @@ and open the template in the editor.
             </div>
             <div>
                 <div class="side">
-                    <img src="pics/icoon.png" alt="" id="icon"/>
+                    <img src="pics/icoon.png" alt="" id="icon" />
                 </div>
             </div>
         </div>

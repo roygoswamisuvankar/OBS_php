@@ -4,45 +4,25 @@ To change this template file, choose Tools | Templates
 and open the template in the editor.
 */
 /* 
-    Created on : 22 Sep, 2021, 12:49:00 PM
+    Created on : 23 Sep, 2021, 8:01:48 PM
     Author     : USER
 */
 body{
     margin: 0;
     padding: 0;
 }
-/*heading*/
+.container{
+    position: absolute;
+}
 h1{
     position: absolute;
-    left: 40%;
+    left: 30%;
     color: #407638;
 }
-.navbar{
-    overflow: hidden;
-    position: absolute;
-    top: 20%;
-    left: 10%;
-    color: brown;
-}
-/*registration form*/
-.regis_sec{
+.container{
     position: absolute;
     top: 30%;
     left: 10%;
-}
-.navbar a{
-    text-align: center;
-    text-decoration: none;
-    float: left;
-    padding: 16px 14px;
-    font-size: 20px;
-    color: brown;
-}
-
-input[type=text], input[type=date], input[type=radio], input[type=email], input[type=password]{
-    padding: 12px 12px;
-    color: black;
-    
 }
 input[type=submit]{
     color: white;
@@ -57,13 +37,11 @@ input[type=submit]:hover{
     background-color: #407638;
     opacity: 0.8;
 }
-select{
+input[type=text], input[type=password]{
     padding: 12px 12px;
     color: black;
-    border-radius: 3px;
+    width: 90%;
 }
-/*icon image*/
-
 #icon{
     width: 300px;
     height: 300px;
@@ -71,11 +49,4 @@ select{
     position: absolute;
     top: 20%;
     left: 65%;
-}
-
-/*login section */
-.login_sec{
-    position: absolute;
-    top: 30%;
-    left: 10%;
 }

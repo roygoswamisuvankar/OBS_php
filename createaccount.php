@@ -31,6 +31,7 @@ and open the template in the editor.
         $gender = $_POST['gender'];
         $document = $_POST['document'];
         $card_no = $_POST['card_no'];
+        $datetime = $_POST['datetime'];
         
         //calculate age
         $dateofbirth = new DateTime($dob);
@@ -83,7 +84,7 @@ and open the template in the editor.
             }
             //after all checking data will be saved in data base user
             else{
-                $query = ("insert into user(fname,lname,email,phone,dob,gender,document,card_no) values('$fname','$lname','$email','$phone','$dob','$gender','$document','$card_no')");
+                $query = ("insert into user(fname,lname,email,phone,dob,gender,document,card_no, datetime) values('$fname','$lname','$email','$phone','$dob','$gender','$document','$card_no','$datetime')");
         
                 if(mysqli_query($connect,$query)){
                     echo '<script>swal({
