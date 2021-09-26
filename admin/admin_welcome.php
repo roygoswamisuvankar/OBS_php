@@ -9,15 +9,43 @@ and open the template in the editor.
         <meta charset="UTF-8">
         <meta name="viewport" content="width=device-width, initial-scale=1">
         <title>Admin Panel</title>
+        <script src="https://code.jquery.com/jquery-1.12.4.min.js"></script>
+        <script src="https://code.jquery.com/jquery-3.6.0.js"></script>
         <link href="../css/sidenav.css" rel="stylesheet" type="text/css"/>
-        <style>
-            
-        </style>
+        <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css">
+        <meta name='viewport' content='width=device-width, initial-scale=1'>
+        <script src='https://kit.fontawesome.com/a076d05399.js' crossorigin='anonymous'></script>
+        <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css">
+        <script>
+            $(document).ready(function(){
+                $(".approved").hide();
+                $(".history").hide();
+                $("#newapp").click(function(){
+                    $(".newapp").show();
+                    $(".approved").hide();
+                    $(".history").hide();
+                });
+                
+                $("#approved").click(function(){
+                    $(".newapp").hide();
+                    $(".history").hide();
+                    $(".approved").show();
+                });
+                
+                $("#history").click(function(){
+                    $(".history").show();
+                    $(".approved").hide();
+                    $(".newapp").hide();
+                });
+            });
+        </script>
     </head>
     <body>
         <?php
             include_once 'session.php';
             include_once 'dbconfig.php';
+            
+                            
         ?>
         <div>
             <div class="container">
@@ -30,7 +58,8 @@ and open the template in the editor.
                         <a href="#"><div class="line"></div></a>
                         <a href="#about" id="newapp">New Applications</a>
                         <a href="#services" id="approved">Approved Applications</a>
-                        <a href="#clients" id="customers">Customers List</a>
+                        <a href="#clients" id="customers">Find Customer</a>
+                        <a href="#History" id="history">Login History</a>
                         
                      </div>
                 </div>
@@ -47,9 +76,10 @@ and open the template in the editor.
                         <h3>New Applicants</h3>
                         <div>
                             <?php 
-                                $newapp = mysqli_query($connect, "select *from user order by id desc");
+                                
+                                $newapp = mysqli_query($connect,"SELECT *from user where id not in (select id from user2) order by datetime desc");
                             ?>
-                            <table border="1">
+                            <table id="customers">
                                 <thead>
                                 <th>ID</th>
                                 <th>First Name</th>
@@ -60,6 +90,7 @@ and open the template in the editor.
                                 <th>Gender</th>
                                 <th>Document Type</th>
                                 <th>Document Id</th>
+                                <th>Application Date</th>
                                 <th>Delete</th>
                                 <th>Edit</th>
                                 <th>Approve</th>
@@ -67,22 +98,84 @@ and open the template in the editor.
                                 <tbody>
                                    <?php
                                         while($res = mysqli_fetch_array($newapp)){
-                                            echo '<tr>';
-                                            echo '<td>'.$res['id'].'</td>';
-                                            echo '<td>'.$res['fname'].'</td>';
-                                            echo '<td>'.$res['lname'].'</td>';
-                                            echo '<td>'.$res['email'].'</td>';
-                                            echo '<td>'.$res['phone'].'</td>';
-                                            echo '<td>'.$res['dob'].'</td>';
-                                            echo '<td>'.$res['gender'].'</td>';
-                                            echo '<td>'.$res['card_no'].'</td>';
-                                            echo '<td>'.$res['datetime'].'</td>';
-                                            echo '<tr>';
-                                        }
+                                            
+                                            
+                                                    echo '<tr>';
+                                                    echo '<td>'.$res['id'].'</td>';
+                                                    echo '<td>'.$res['fname'].'</td>';
+                                                    echo '<td>'.$res['lname'].'</td>';
+                                                    echo '<td>'.$res['email'].'</td>';
+                                                    echo '<td>'.$res['phone'].'</td>';
+                                                    echo '<td>'.$res['dob'].'</td>';
+                                                    echo '<td>'.$res['gender'].'</td>';
+                                                    echo '<td>'.$res['document'].'</td>';
+                                                    echo '<td>'.$res['card_no'].'</td>';
+                                                    echo '<td>'.$res['datetime'].'</td>';
+                                                    echo "<td><a href=\"delete.php?id=$res[id]\" onClick=\"return confirm('Are you sure?')\"><i class='fa fa-remove' style='color: red'></i></a></td>";
+                                                    echo "<td><a href=\"edit.php?id=$res[id]\"><i class='fas fa-edit' style='color: orange'></i></a></td>";
+                                                    echo "<td><a href=\"approve.php?id=$res[id]\"><i class='fa fa-check-square-o' style='color: green'></i></a></td>";
+                                                    echo '<tr>';
+                                            }    
+                                    
+            
                                    ?>
                                 </tbody>
                             </table>
                         </div>
+                    </div>
+                    <div class="approved">
+                        <h3>Approved Applicants</h3>
+                        <?php
+                            $approvedapp1 = mysqli_query($connect, "select *from user2 order by datetime desc");
+                        ?>
+                        <table id="customers">
+                            <thead>
+                            <th>ID</th>
+                            <th>First Name</th>
+                            <th>Last Name</th>
+                            <th>Contact Number</th>
+                            <th>Approved By</th>
+                            <th>Approval Time</th>
+                            </thead>
+                            <tbody>
+                                <?php
+                                    while($res1 = mysqli_fetch_array($approvedapp1)){
+                                        echo '<tr>';
+                                        echo '<td>'.$res1['id'].'</td>';
+                                        echo '<td>'.$res1['fname'].'</td>';
+                                        echo '<td>'.$res1['lname'].'</td>';
+                                        echo '<td>'.$res1['phone'].'</td>';
+                                        echo '<td>'.$res1['byname'].'</td>';
+                                        echo '<td>'.$res1['datetime'].'</td>';
+                                        echo '</tr>';
+                                        
+                                       
+                                    }
+                                ?>
+                            </tbody>
+                        </table>
+                    </div>
+                    <div class="history">
+                        <h3>Admin Login History</h3>
+                        <?php
+                            $history = mysqli_query($connect,"select datetime from adminlogin where admin_id = $login_session order by datetime desc");
+                            
+                        ?>
+                        
+                        <table id="customers">
+                            <thead>
+                            <th>Date & Time </th>
+                            </thead>
+                            <tbody>
+                                <?php
+                                    while($res = mysqli_fetch_array($history)){
+                                        echo '<tr>';
+                                        echo '<td>'.$res['datetime'].'</td>';
+                                        echo '</tr>';
+                                    }
+                                ?>
+                            </tbody>
+                        </table>
                     </div>
                 </div>
             </div>
