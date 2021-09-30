@@ -21,12 +21,23 @@ and open the template in the editor.
         <script src="https://code.jquery.com/jquery-3.6.0.js"></script>
         <script src="https://unpkg.com/sweetalert/dist/sweetalert.min.js"></script>
         <script src="https://unpkg.com/sweetalert/dist/sweetalert.min.js"></script>
+        <script src="../script/script2.js" type="text/javascript"></script>
         <script>
             var app = angular.module('myapp', []);
             app.controller('validctrl', function($scope){
                 
             });
         </script>
+        <style>
+            .active{
+                font-weight: bold;
+            }
+            .sidenav a.active{
+                color: black;
+                font-weight: bold;
+                background-color: white;
+            }
+        </style>
     </head>
     <body>
         <?php

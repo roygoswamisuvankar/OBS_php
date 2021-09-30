@@ -13,9 +13,11 @@ and open the template in the editor.
         <script src="https://ajax.googleapis.com/ajax/libs/angularjs/1.6.9/angular.min.js"></script>
         <script src="https://code.jquery.com/jquery-1.12.4.min.js"></script>
         <script src="https://code.jquery.com/jquery-3.6.0.js"></script>
+        
         <script src="script/script.js" type="text/javascript"></script>
         <link href="css/style1.css" rel="stylesheet" type="text/css"/>
         <script src="https://unpkg.com/sweetalert/dist/sweetalert.min.js"></script>
+        <script src="script/script2.js" type="text/javascript"></script>
         <script>
             var rootApp = angular.module('rootApp', ['myapp','myapp1']);
             var app = angular.module('myapp',[]);
@@ -38,14 +40,14 @@ and open the template in the editor.
                 </div>
                 <div>
                     <div class="navbar">
-                        <a class="login" href="#">Login</a>
+                        <a class="login" href="#login">Login</a>
                         <a> | </a>
-                        <a class="regis" href="#">Create Account</a>
+                        <a class="regis" href="#createaccount">Create Account</a>
                     </div>
                 </div>
                 <div>
                     <div class="login_sec">
-                        <form action="#" method="post" name="myform" ng-app="myapp1" ng-controller="validcontrol" novalidate >
+                        <form action="user_login.php" method="post" name="myform" ng-app="myapp1" ng-controller="validcontrol" novalidate >
                             <input type="text" name="username" placeholder="Enter your Phone Number " ng-model="usename" ng-pattern="/^\+?\d{10}$/" maxlength="10" required/><br/>
                              <span style="color: red" ng-show="myform.username.$dirty && myform.username.$invalid">
                                 <span ng-show="myform.username.$error.required">*Phone Number is required</span>
@@ -56,7 +58,7 @@ and open the template in the editor.
                             <span style="color: red" ng-show="myform.pass.$dirty && myform.pass.$invalid">
                                 <span ng-show="myform.pass.$error.required">*Password is required</span>
                             </span><br/>
-                            
+                                                        
                             <input type="submit" value="Login" name="login" ng-disabled="myform.$invalid" />
                         </form>
                     </div>

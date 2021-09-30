@@ -50,7 +50,13 @@ and open the template in the editor.
                     $_SESSION['login_user'] = $username;
                     header("location: admin_welcome.php");
                 }else{
-                    echo '<script>swal("Wrong!", "username or password wrong", "error")</script>';
+                    echo '<script>swal({
+                                      title: "Error!",
+                                      text: "User ID or Password is wrong!",
+                                      icon: "error"
+                                    }).then(function() {
+                                            window.location = "admin_login.php";
+                                    });</script>';
                 }
             }
         ?>

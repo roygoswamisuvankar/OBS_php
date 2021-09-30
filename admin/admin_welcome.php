@@ -12,6 +12,7 @@ and open the template in the editor.
         <script src="https://code.jquery.com/jquery-1.12.4.min.js"></script>
         <script src="https://code.jquery.com/jquery-3.6.0.js"></script>
         <link href="../css/sidenav.css" rel="stylesheet" type="text/css"/>
+        <script src="../script/script2.js" type="text/javascript"></script>
         <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css">
         <meta name='viewport' content='width=device-width, initial-scale=1'>
         <script src='https://kit.fontawesome.com/a076d05399.js' crossorigin='anonymous'></script>
@@ -39,6 +40,16 @@ and open the template in the editor.
                 });
             });
         </script>
+        <style>
+            .active{
+                font-weight: bold;
+            }
+            .sidenav a.active{
+                color: black;
+                font-weight: bold;
+                background-color: white;
+            }
+        </style>
     </head>
     <body>
         <?php
