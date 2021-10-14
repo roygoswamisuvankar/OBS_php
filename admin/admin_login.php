@@ -27,6 +27,7 @@ and open the template in the editor.
         <?php
         // put your code here
         include_once 'dbconfig.php';
+        include_once 'session.php';
         //current date and time
              $now = new DateTime('now', new DateTimeZone('Asia/Kolkata'));
              //echo $now->format('d-m-Y H:i:s a');

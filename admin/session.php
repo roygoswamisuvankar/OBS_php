@@ -6,6 +6,7 @@
  * and open the template in the editor.
  */
 include_once 'dbconfig.php';
+include_once 'session.php';
    
 session_start();
    

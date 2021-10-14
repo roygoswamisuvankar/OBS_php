@@ -64,8 +64,8 @@ and open the template in the editor.
                 <div>
                     <div class="sidenav">
                         <img src="../pics/icoon.png" alt="" id="icon"/>
-                        <a href="#">Welcome</a>
-                        <a href="#"><?php echo $login_session1 ?></a>
+                        <h3 style=" padding: 12px 16px; color: white;">Welcome
+                        <?php echo $login_session1 ?></h3>
                         <a href="#"><div class="line"></div></a>
                         <a href="#about" id="newapp">New Applications</a>
                         <a href="#services" id="approved">Approved Applications</a>

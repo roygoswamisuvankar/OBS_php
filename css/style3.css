@@ -1,0 +1,29 @@
+/*
+To change this license header, choose License Headers in Project Properties.
+To change this template file, choose Tools | Templates
+and open the template in the editor.
+*/
+/* 
+    Created on : 14 Oct, 2021, 12:35:28 PM
+    Author     : USER
+*/
+/*styles of wallet sections*/
+#bal{
+    padding: 10px 16px;
+    color: black;
+}
+#submit{
+    padding: 12px 16px;
+    color: white;
+    background-color: greenyellow;
+    cursor: pointer;
+    font-weight: bold;
+    border: none;
+    border-radius: 5px;
+}
+#submit:hover{
+    color: white;
+    cursor: pointer;
+    background-color: green;
+}
+
