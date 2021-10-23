@@ -160,7 +160,20 @@ and open the template in the editor.
                                 <div class="paydebit">
                                     <?php 
                                         if ($pay_form == true){
-                                            
+                                            $find_debit = mysqli_query($connect, "select *from debit where phone = $login_session");
+                                            while($find = mysqli_fetch_array($find_debit)){
+                                                echo '<div>';
+                                                echo '<h3 style="color: green">Pay using your Debit Card</h3><br/>';
+                                                echo '<form action="pay_using_debit.php" method="post" name="mypay">';
+                                                echo '<input type="text" name="bankname" value="'.$find['bankname'].'"/>';
+                                                echo '&nbsp;<input type="text" name="cardno" value="'.$find['cardno'].'"/>';
+                                                echo '&nbsp;<input type="text" name="cvv" placeholder="Enter CVV number" />';
+                                                echo '&nbsp;<input type="password" name="pin" placeholder="Enter your pin" /><br/><br/>';
+                                                echo '<input type="submit" value="'.$cur.' Pay" name="pay" /> &nbsp; | &nbsp <input type="reset" value="reset" name="reset" id="reset" />';
+                                                echo '</form>';
+                                                echo '</div>';
+                                                echo '<br/><br/><br/><br/>';
+                                            }
                                         }
                                         else{
                                             echo "<h3 style='color: red;'>$sms</h3>";

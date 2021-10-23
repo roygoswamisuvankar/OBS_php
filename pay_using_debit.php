@@ -15,7 +15,7 @@ and open the template in the editor.
         include_once 'dbconfig.php';
         include_once 'usersession.php';
         
-        $result = mysqli_query($connect, "select *from debit where phone = $login_session");
+        $matching = ();
         ?>
     </body>
 </html>

@@ -280,7 +280,7 @@ and open the template in the editor.
                                                         
                                                     </script>
                                                     
-                                                    <form action="add_debit.php" method="post" name="myform">
+                                                    <form action="adddebit.php" method="post" name="myform">
                                                         <i class='fas fa-bank' style="font-size: 24px;"></i>
                                                         <select id="" name="bank">
                                                             <option value="Allabahad Bank">Allabahad Bank</option>
@@ -307,7 +307,7 @@ and open the template in the editor.
                                                         &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<label id="cvv" style="color: red;" >*Please enter valid CVV</label>                                                   
                                                         
                                                         <label id="date"></label><br/>
-                                                        
+                                                        <input type="password" name="pin" placeholder="Set your Debit Card PIN" required /><br/><br/>
                                                         <input type="submit" name="save" value="Save" id="save" /> 
                                                         <span style=" float: right; padding: 10px 12px;">
                                                             &nbsp;&nbsp;<i class="fa fa-cc-discover" style=" font-size: 30px;"></i>
