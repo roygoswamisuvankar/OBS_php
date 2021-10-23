@@ -57,9 +57,8 @@ and open the template in the editor.
                         <h3 style=" padding: 6px 16px; color: white"><i class='fas fa-user-alt'></i> <?php echo $fname ?></h3>
                         
                         <a href="#"><div class="line"></div></a>
-                        <h3 style=" padding: 6px 16px; color: white;">Choose your Pay Methods</h3>
-                        <a href="#Credit-Card" id="credit-card">Credit Card</a>
-                        <a href="#debit-card" id="debit-card">Debit Card</a>
+                        
+                        
                         <a href="user_welcome.php">Cancel</a>
                      </div>
                 </div>
@@ -84,19 +83,105 @@ and open the template in the editor.
                                     echo 'To add Ammount <font color="Blue" ><b>'.$cur.'</b></font> in your wallet choose your payment method';
                             }
                             ?>
+                            <h3>Choose your payment methods</h3>
                         </div>
-                                                
-                    </div>
-                    <div>
-                        <div class="credit">
-                            <h1>credit card</h1>
+                           <?php
+                           $result = mysqli_query($connect, "select *from debit where phone = $login_session");
+                                
+                           $row = mysqli_fetch_array($result, MYSQLI_ASSOC);
+                           $count = mysqli_num_rows($result);
+                                
+                                if($count == 1){
+                                    $balance_check = mysqli_query($connect, "select *from debit where phone = $login_session");
+                                    while($res = mysqli_fetch_array($balance_check)){
+                                        $debit = $res['cardno'];
+                                        $bankname = $res['bankname'];
+                                        $status = "success";
+                                        $sms = "Pay using your Debit Card";
+                                        $pay_form = true;
+                                    }
+                                }else{
+                                    $sms = "*You have no Debit Card on your data bases, please add first then try again";
+                                    $status = "Failed";
+                                    $pay_form = false;
+                                }
+                                
+                           ?>
+                        <?php
+                        $result = mysqli_query($connect, "select *from credit where phone = $login_session");
+                                
+                        $row = mysqli_fetch_array($result, MYSQLI_ASSOC);
+                        $count = mysqli_num_rows($result);
+                                
+                                if($count == 1){
+                                    $balance_check = mysqli_query($connect, "select *from credit where phone = $login_session");
+                                    while($res = mysqli_fetch_array($balance_check)){
+                                        $credit = $res['cardno'];
+                                        $bankname = $res['bankname'];
+                                        $status1 = "success";
+                                        $sms1 = "Pay using your Credit Card";
+                                        $pay_form1 = true;
+                                    }
+                                }else{
+                                    $sms1 = "*You have no Credit Card on your data bases, please add first then try again";
+                                    $status1 = "Failed";
+                                    $pay_form1 = false;
+                                }
+                        ?>
+                        <div>
+                            <script>
+                                $(document).ready(function(){
+                                    $(".paydebit").hide();
+                                    $(".paycredit").hide();
+                                    $(".paybank").hide();
+                                    $("#paydebit").click(function(){
+                                        $(".paydebit").show();
+                                        $(".paycredit").hide();
+                                        $(".paybank").hide();
+                                    });
+                                    $("#paycredit").click(function(){
+                                        $(".paydebit").hide();
+                                        $(".paycredit").show();
+                                        $(".paybank").hide();
+                                    });
+                                    $("#paybank").click(function(){
+                                        $(".paydebit").hide();
+                                        $(".paycredit").hide();
+                                        $(".paybank").show();
+                                    })
+                                });
+                            </script>
+                            <div>
+                                <input type="radio" name="paymethod" id="paydebit" /><label>Debit card : </label>
+                                <input type="radio" name="paymethod" id="paycredit" /><label>Credit card : </label>
+                                <input type="radio" name="paymethod" id="paybank" disabled /><label>Bank Transfer: </label>
+                            </div>
+                            <div>
+                                <div class="paydebit">
+                                    <?php 
+                                        if ($pay_form == true){
+                                            
+                                        }
+                                        else{
+                                            echo "<h3 style='color: red;'>$sms</h3>";
+                                        }
+                                    ?>
+                                </div>
+                                <div class="paycredit">
+                                    <?php
+                                        if($pay_form1 == true){
+                                            
+                                        }
+                                        else{
+                                            echo "<h3 style='color: red;'>$sms1</h3>";
+                                        }
+                                    ?>
+                                </div>
+                                <div class="paybank">bank</div>
+                            </div>
                         </div>
                     </div>
-                    <div>
-                        <div class="debit">
-                            <h1>Debit</h1>
-                        </div>
-                    </div>
+                                        
                 </div>
             </div>
     </body>

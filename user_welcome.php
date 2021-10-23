@@ -208,28 +208,157 @@ and open the template in the editor.
                                             <div>
                                                 <div class="design_debit">
                                                     <script>
+                                                        /*validation of card no input field*/
                                                         $(document).ready(function(){
                                                             
+                                                            $("#cardno").hide();
+                                                            $("#cardno1").hide();
+                                                            
+                                                            
+                                                            $("#in_cardno").on("input", function(){
+                                                               var number = "^[0-9]+$";
+                                                                                                                              
+                                                               var data = $("#in_cardno").val();
+                                                               if(data.length<16){
+                                                                   $("#cardno1").show();
+                                                                   $("#cardno").hide();
+                                                                   $("#save").attr("disabled", true);
+                                                               }
+                                                               else if(!data.match(number)){
+                                                                   $("#cardno").show();
+                                                                   $("#cardno1").hide();
+                                                                   $("#save").attr("disabled", true);
+                                                               }
+                                                               
+                                                               else{
+                                                                   $("#cardno").hide();
+                                                                   $("#cardno1").hide();
+                                                                   
+                                                                   $("#save").attr("disabled", false);
+                                                               }
+                                                            });
                                                         });
+                                                        
+                                                        /*holder name*/
+                                                        $(document).ready(function(){
+                                                           $("#name1").hide();
+                                                           var name = /^[a-zA-Z-,]+(\s{0,1}[a-zA-Z-, ])*$/;
+                                                           $("#holder").on("input", function(){
+                                                              var holdername = $("#holder").val();
+                                                              if(!holdername.match(name) || holdername.length<=4){
+                                                                  $("#name1").show();
+                                                                  $("#save").attr("disabled", true);
+                                                              }
+                                                              else
+                                                              {
+                                                                  $("#name1").hide();
+                                                                  $("#save").attr("disabled", false);
+                                                              }
+                                                           });
+                                                        });
+                                                        
+                                                        /*cvv number validation*/
+                                                        
+                                                        $(document).ready(function(){
+                                                            $("#cvv").hide();
+                                                            var validcvv = "^[0-9]+$";
+                                                            
+                                                            $("#in_cvv").on("input", function(){
+                                                               var data1 = $("#in_cvv").val();
+                                                               if(!data1.match(validcvv) || data1.length < 3 || data1.length > 3){
+                                                                   $("#cvv").show();
+                                                                   $("#save").attr("disabled", true);
+                                                               }
+                                                               else
+                                                               {
+                                                                   $("#cvv").hide();
+                                                                   $("#save").attr("disabled", false);
+                                                               }
+                                                            });
+                                                        });
+                                                        
+                                                        
                                                     </script>
+                                                    
                                                     <form action="add_debit.php" method="post" name="myform">
-                                                        <i class='fas fa-bank'></i>
+                                                        <i class='fas fa-bank' style="font-size: 24px;"></i>
                                                         <select id="" name="bank">
-                                                            <option>Allabahad Bank</option>
-                                                            <option>SBI Bank</option>
+                                                            <option value="Allabahad Bank">Allabahad Bank</option>
+                                                            <option value="SBI Bank">SBI Bank</option>
+                                                            <option value="SBI Bank">Canara Bank</option>
+                                                            <option value="SBI Bank">Baroda Bank</option>
+                                                            <option value="SBI Bank">Axis Bank</option>
+                                                            <option value="SBI Bank">Indian Bank</option>
+                                                            <option value="SBI Bank">Bandhan Bank</option>
                                                         </select>
                                                         
                                                         <label class="l_debit"><i class='fas fa-credit-card'></i> Debit Card</label><br><br>
                                                         <div class="line1"></div><br>
                                                         
-                                                        <input type="text" maxlength="16" placeholder="xxxx-xxxx-xxxx-xxxx" name="cardno" /><br>
-                                                        <labe id="cardno"></labe>
+                                                        <input type="hidden" value="<?php echo $login_session; ?>" name="phone" />
+                                                        
+                                                        <i class='fas fa-sim-card' style="font-size: 20px;"></i>&nbsp; <input type="text" maxlength="16" placeholder="xxxx-xxxx-xxxx-xxxx" name="cardno" id="in_cardno" required /><br>
+                                                        &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<label id="cardno" style="color: red;" >*Please enter valid card number</label><labe id="cardno1" style="color: red;" >*Card number must be 16 digits number</labe><br/>
+                                                        
+                                                        <i class='fas fa-user-alt' style="font-size: 20px;"></i> <input type="text" name="holder" id="holder" placeholder="Card Holder Name" required /><br/>
+                                                        &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<label id="name1" style="color: red;" >*Please enter valid name</label><br/>
+                                                        
+                                                        <label class="cvv">CVV </label> <input type="number" name="cvv" placeholder="123" maxlength="3" id="in_cvv" required/> &nbsp; &nbsp; <label class="expire">Expire Date </label><input type="date" name="date" placeholder="DD/MM/YYYY" id="in_date" required /><br/>
+                                                        &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<label id="cvv" style="color: red;" >*Please enter valid CVV</label>                                                   
+                                                        
+                                                        <label id="date"></label><br/>
+                                                        
+                                                        <input type="submit" name="save" value="Save" id="save" /> 
+                                                        <span style=" float: right; padding: 10px 12px;">
+                                                            &nbsp;&nbsp;<i class="fa fa-cc-discover" style=" font-size: 30px;"></i>
+                                                            &nbsp;&nbsp;<i class="fa fa-cc-visa" style=" font-size: 30px;"></i>
+                                                            &nbsp;&nbsp;<i class="fa fa-cc-mastercard" style=" font-size: 30px;"></i>
+                                                            &nbsp;&nbsp;<i class="fa fa-google-wallet" style=" font-size: 30px;"></i>
+                                                            &nbsp;&nbsp;<i class="fa fa-paypal" style=" font-size: 30px;"></i>
+                                                        </span>
                                                     </form>
                                                 </div>
                                             </div>
                                         </div>
                                         <div class="show_debitcard">
-                                            <h3>show</h3>
+                                            <h3>Your Debit Card</h3>
+                                            <div>
+                                                
+                                                <!--<div class="design_debit">-->
+                                                <?php
+                                                    $show_debit_card = mysqli_query($connect, "select *from debit where phone = $login_session");
+                                            
+                                                    while($show_debit = mysqli_fetch_array($show_debit_card)){
+                                                        
+                                                        echo '<p>';
+                                                        echo '<div>';
+                                                        echo '<div class="design_debit">';
+                                                        echo '<input type="hidden" value="'.$show_debit['id'].'"/>';
+                                                        echo '<i class="fas fa-bank" style="font-size: 24px;"></i> <input type="text" value="'.$show_debit['bankname'].'" readonly style="width : 30%;" />';
+                                                        echo '<label class="l_debit"><i class="fas fa-credit-card"></i> Debit Card</label><br><br>';
+                                                        echo '<div class="line1"></div><br>';
+                                                        echo '<i class="fas fa-sim-card" style="font-size: 20px;"></i>&nbsp; <input type="text" value="'.$show_debit['cardno'].'" readonly /></br></br>';
+                                                        echo '<i class="fas fa-user-alt" style="font-size: 20px;"></i> <input type="text" value="'.$show_debit['holder'].'" readonly /></br></br>';
+                                                        echo '<label class="cvv">CVV</label>&nbsp&nbsp<input type="text" value="'.$show_debit['cvv'].'" readonly style="width: 20%;" />';
+                                                        echo '&nbsp &nbsp <lable class="expire">Expire Date</label>&nbsp<input type="text" value="'.$show_debit['expire'].'" readonly style="width: 30%;"/><br/><br/>';
+                                                        echo "<a href=\"delete_debit.php?id=$show_debit[id]\" onClick=\"return confirm('Are you Sure?')\" style='padding: 12px 15px; color: white; background-color: red; border-radius: 5px; cursor: pointer; text-decoration: none; position: absolute; top: 80%;' ><i class='fa fa-remove'></i> Delete</a>";
+                                                        echo '<span style=" float: right; padding: 10px 12px;">
+                                                            &nbsp;&nbsp;<i class="fa fa-cc-discover" style=" font-size: 30px;"></i>
+                                                            &nbsp;&nbsp;<i class="fa fa-cc-visa" style=" font-size: 30px;"></i>
+                                                            &nbsp;&nbsp;<i class="fa fa-cc-mastercard" style=" font-size: 30px;"></i>
+                                                            &nbsp;&nbsp;<i class="fa fa-google-wallet" style=" font-size: 30px;"></i>
+                                                            &nbsp;&nbsp;<i class="fa fa-paypal" style=" font-size: 30px;"></i>
+                                                        </span>';
+                                                        echo '</div>';
+                                                        echo '</div>';
+                                                        echo '<br/><br/><br/><br/><br/><br/><br/><br/><br/><br/><br/><br/><br/><br/><br/><br/><br/><br/><br/>';
+                                                        echo '<p>';
+                                                    }
+                                                ?>
+                                                
+                                                <!--</div>-->
+                                            </div>
+                                            
                                         </div>
                                     </div>
                                 </div>
