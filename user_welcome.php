@@ -307,7 +307,17 @@ and open the template in the editor.
                                                         &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<label id="cvv" style="color: red;" >*Please enter valid CVV</label>                                                   
                                                         
                                                         <label id="date"></label><br/>
-                                                        <input type="password" name="pin" placeholder="Set your Debit Card PIN" required /><br/><br/>
+                                                        &nbsp;&nbsp;<i class="fa fa-lock" style="font-size:24px"></i>&nbsp;&nbsp;<input type="password" name="pin" placeholder="Set PIN" id="pin" required /><br/><br/> 
+                                                        <style>
+                                                            #pin{
+                                                                padding: 8px 10px;
+                                                                font-size: 15px;
+                                                                border-radius: 5px;
+                                                                border: 0.5px solid black;
+                                                                width: 20%;
+                                                                
+                                                            }
+                                                        </style>
                                                         <input type="submit" name="save" value="Save" id="save" /> 
                                                         <span style=" float: right; padding: 10px 12px;">
                                                             &nbsp;&nbsp;<i class="fa fa-cc-discover" style=" font-size: 30px;"></i>
@@ -377,7 +387,40 @@ and open the template in the editor.
                     </div>
                     <div>
                         <div class="transaction">
-                            <h1>History transactions</h1>
+                            <h1>My transactions History</h1>
+                            <table id="customers">
+                                <thead>
+                                <th>Transaction ID</th>
+                                <th>Pay Method</th>
+                                <th>A/C or Card No.</th>
+                                <th>Date & Time</th>
+                                <th>Purpose</th>
+                                <th>Status</th>
+                                </thead>
+                                <tbody>
+                                    
+                                        <?php 
+                                            $tran_his = mysqli_query($connect,"select *from transaction where phone = $login_session order by datetime desc");
+                                
+                                            while($tran_res_his = mysqli_fetch_array($tran_his)){
+                                                echo '<tr>';
+                                                echo "<td>".$tran_res_his['tran_id']."</td>";
+                                                echo "<td>".$tran_res_his['method']."</td>";
+                                                echo "<td>".$tran_res_his['cardno']."</td>";
+                                                echo "<td>".$tran_res_his['datetime']."</td>";
+                                                echo "<td>".$tran_res_his['purpose']."</td>";
+                                                if($tran_res_his['status'] == 'Success'){
+                                                    echo "<td style='color : green'>".$tran_res_his['status']."</td>";
+                                                }else{
+                                                    echo "<td style='color : red'>".$tran_res_his['status']."</td>";
+                                                }
+                                                echo '</tr>';
+                                            }
+                                        ?>
+                                
+                                </tbody>
+                            </table>
+                            
                         </div>
                     </div>
                     <div>

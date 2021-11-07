@@ -86,16 +86,16 @@ and open the template in the editor.
                             <h3>Choose your payment methods</h3>
                         </div>
                            <?php
+                           
                            $result = mysqli_query($connect, "select *from debit where phone = $login_session");
-                                
                            $row = mysqli_fetch_array($result, MYSQLI_ASSOC);
                            $count = mysqli_num_rows($result);
                                 
-                                if($count == 1){
+                                if($count >= 1){
                                     $balance_check = mysqli_query($connect, "select *from debit where phone = $login_session");
                                     while($res = mysqli_fetch_array($balance_check)){
-                                        $debit = $res['cardno'];
-                                        $bankname = $res['bankname'];
+                                        //$debit = $res['cardno'];
+                                        //$bankname = $res['bankname'];
                                         $status = "success";
                                         $sms = "Pay using your Debit Card";
                                         $pay_form = true;
@@ -116,8 +116,8 @@ and open the template in the editor.
                                 if($count == 1){
                                     $balance_check = mysqli_query($connect, "select *from credit where phone = $login_session");
                                     while($res = mysqli_fetch_array($balance_check)){
-                                        $credit = $res['cardno'];
-                                        $bankname = $res['bankname'];
+                                        //$credit = $res['cardno'];
+                                        //$bankname = $res['bankname'];
                                         $status1 = "success";
                                         $sms1 = "Pay using your Credit Card";
                                         $pay_form1 = true;
@@ -163,16 +163,21 @@ and open the template in the editor.
                                             $find_debit = mysqli_query($connect, "select *from debit where phone = $login_session");
                                             while($find = mysqli_fetch_array($find_debit)){
                                                 echo '<div>';
-                                                echo '<h3 style="color: green">Pay using your Debit Card</h3><br/>';
-                                                echo '<form action="pay_using_debit.php" method="post" name="mypay">';
-                                                echo '<input type="text" name="bankname" value="'.$find['bankname'].'"/>';
-                                                echo '&nbsp;<input type="text" name="cardno" value="'.$find['cardno'].'"/>';
-                                                echo '&nbsp;<input type="text" name="cvv" placeholder="Enter CVV number" />';
-                                                echo '&nbsp;<input type="password" name="pin" placeholder="Enter your pin" /><br/><br/>';
-                                                echo '<input type="submit" value="'.$cur.' Pay" name="pay" /> &nbsp; | &nbsp <input type="reset" value="reset" name="reset" id="reset" />';
+                                                echo "<h3 style='color: green'>Pay using your <font color='Blue'> ".$find['bankname']."</font> Debit Card</h3>";                         
+                                                echo '<form action="pay_using_debit.php" name="my_pay_form" method="post">';
+                                                echo '<i class="fa fa-credit-card" style="font-size:24px"></i>';
+                                                echo "<input type='hidden' value=".$find['id']." name = 'id' />";
+                                                echo "<input type='hidden' value=".$find['bankname']." name = 'bankname'/>";
+                                                echo "<input type='hidden' value=".$find['cardno']." name = 'cardno'/>";
+                                                echo "<input type='hidden' value=".$cur." name = 'balance'/>";
+                                                echo "&nbsp;&nbsp;".$find['bankname']."&nbsp;&nbsp;";
+                                                echo "A/C ".$find['cardno']."&nbsp;&nbsp;";
+                                                echo '<input type="text" name="cvv" placeholder="CVV" required />&nbsp;&nbsp;';
+                                                echo '<input type="password" name="pin" placeholder="Pin" required />&nbsp;&nbsp;';
+                                                echo "<input type='submit' value=' Pay ".$cur."' name = 'pay' />";
                                                 echo '</form>';
                                                 echo '</div>';
-                                                echo '<br/><br/><br/><br/>';
+                                                echo '<br/>';
                                             }
                                         }
                                         else{
