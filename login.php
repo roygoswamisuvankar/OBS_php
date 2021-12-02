@@ -29,6 +29,16 @@ and open the template in the editor.
                 
             });
         </script>
+        <style>
+            .cancel{
+                text-decoration: none;
+                padding: 10px 12px;
+                color: white;
+                background-color: red;
+                font-weight: bold;
+                border-radius: 5px;
+            }
+        </style>
     </head>
     <body ng-app="rootApp">
         <div>
@@ -59,8 +69,9 @@ and open the template in the editor.
                                 <span ng-show="myform.pass.$error.required">*Password is required</span>
                             </span><br/>
                                                         
-                            <input type="submit" value="Login" name="login" ng-disabled="myform.$invalid" />
+                            <input type="submit" value="Login" name="login" ng-disabled="myform.$invalid" /> &nbsp;&nbsp;&nbsp;&nbsp; <a href="index.html" class="cancel" >Cancel</a>
                         </form>
+                        <br/><a href="#">Forgot Password?</a>
                     </div>
                     <div class="regis_sec">
                         <form action="createaccount.php" method="post" ng-app="myapp" ng-controller="validctrl" name="myform" novalidate>
@@ -136,8 +147,9 @@ and open the template in the editor.
                             <?php $nowtime = new DateTime('now', new DateTimeZone('Asia/Kolkata')); ?>
                             <input type="hidden" name="datetime" value="<?php echo $nowtime->format('d-m-Y H:i:s a'); ?>" />
                             
-                            <input type="submit" value="Submit" name="submit" ng-disabled="myform.$invalid" />
+                            <input type="submit" value="Submit" name="submit" ng-disabled="myform.$invalid" />&nbsp;&nbsp;&nbsp;&nbsp;<a href="index.html" class="cancel" >Cancel</a>
                         </form>
+                        
                     </div>
                 </div>
             </div>

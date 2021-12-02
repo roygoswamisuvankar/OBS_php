@@ -1,0 +1,42 @@
+body{
+    background-color: aqua;
+}
+#name{
+    position:relative;
+    display:inline-block;
+    margin-right: 400px; 
+    font-size: 50px;
+    font-family: 'Lobster', cursive;
+    font-family: 'Anton', sans-serif;
+    color: aliceblue;
+
+}
+.footer-h5{
+    text-decoration: none;
+    text-align: center;
+}
+.footer-cs{
+    text-align: center;
+}
+.footer-p{
+    display: inline;
+    margin-left: 10px;
+    margin-right: 10px;
+    margin-bottom: 8px;
+}
+.sticky{
+    position: fixed;
+    top: 0px;
+    width: 100%;
+}
+a{
+    text-decoration: none;
+    cursor: pointer;
+}
+.footer-c{
+    display: flex;
+    justify-content:space-evenly;
+}
+vid{
+    display: inline;
+}

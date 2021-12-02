@@ -1,0 +1,51 @@
+body{
+    background-color: aqua;
+}
+#name{
+    position:relative;
+    display:inline-block;
+    margin-right: 330px; 
+    font-size: 50px;
+    font-family: 'Lobster', cursive;
+    font-family: 'Anton', sans-serif;
+    color: aliceblue;
+
+}
+
+
+
+
+.ceo-text{  
+    text-align: center;
+    justify-content: center;
+    
+}
+.ceo{
+    /* display: inline-block; */
+}
+.s{
+    display: flex;
+    /* text-align: center;
+    justify-content: center; */
+}
+.footer-h5{
+    text-decoration: none;
+    text-align: center;
+}
+.footer-cs{
+    text-align: center;
+}
+.footer-p{
+    display: inline;
+    margin-left: 10px;
+    margin-right: 10px;
+    margin-bottom: 8px;
+}
+a{
+    text-decoration: none;
+    cursor: pointer;
+}
+.footer-c{
+    display: flex;
+    justify-content:space-evenly;
+}

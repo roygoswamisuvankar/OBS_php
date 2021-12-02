@@ -113,7 +113,7 @@ and open the template in the editor.
                         $row = mysqli_fetch_array($result, MYSQLI_ASSOC);
                         $count = mysqli_num_rows($result);
                                 
-                                if($count == 1){
+                                if($count >= 1){
                                     $balance_check = mysqli_query($connect, "select *from credit where phone = $login_session");
                                     while($res = mysqli_fetch_array($balance_check)){
                                         //$credit = $res['cardno'];
@@ -172,9 +172,9 @@ and open the template in the editor.
                                                 echo "<input type='hidden' value=".$cur." name = 'balance'/>";
                                                 echo "&nbsp;&nbsp;".$find['bankname']."&nbsp;&nbsp;";
                                                 echo "A/C ".$find['cardno']."&nbsp;&nbsp;";
-                                                echo '<input type="text" name="cvv" placeholder="CVV" required />&nbsp;&nbsp;';
-                                                echo '<input type="password" name="pin" placeholder="Pin" required />&nbsp;&nbsp;';
-                                                echo "<input type='submit' value=' Pay ".$cur."' name = 'pay' />";
+                                                echo '<input type="text" name="cvv" placeholder="CVV" required style="padding : 8px 10px; border-radius: 5px; width: 5%;" />&nbsp;&nbsp;';
+                                                echo '<input type="password" name="pin" placeholder="Pin" required style="padding : 8px 10px; border-radius: 5px; width: 5%;" />&nbsp;&nbsp;';
+                                                echo "<input type='submit' value=' Pay Rs. ".$cur."/-' name = 'pay' style='padding: 8px 10px; border: none; border-radius: 5px; color: white; font-weight: bold; background-color: green; cursor: pointer;' />";
                                                 echo '</form>';
                                                 echo '</div>';
                                                 echo '<br/>';

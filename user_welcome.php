@@ -382,7 +382,154 @@ and open the template in the editor.
                     </div>
                     <div>
                         <div class="makepay">
-                            <h1>Make Pay</h1>
+                            <div>
+                                <script>
+                                    $(document).ready(function(){
+                                        
+                                        $(".bank").hide();
+                                        $(".mobile").hide();
+                                        
+                                       $("#bank").click(function(){
+                                           $(".bank").show();
+                                           $(".mobile").hide();
+                                       });
+                                       
+                                       $("#mobile").click(function(){
+                                           $(".bank").hide();
+                                           $(".mobile").show();
+                                       })
+                                    });
+                                </script>
+                                <h1>Make Your Pay</h1>
+                                <input type="radio" name="paymode" id="bank"><label>Pay To Bank</label>
+                                <input type="radio" name="paymode" id="mobile"><label>Mobile Recharge</label>
+                                <div class="bank">
+                                    <div>
+                                        <script>
+                                            $(document).ready(function(){
+                                               $(".debit").hide();
+                                               $(".credit").hide();
+                                               $(".wallet2").hide();
+                                               
+                                               $("#debit").click(function(){
+                                                    $(".debit").show();
+                                                    $(".credit").hide();
+                                                    $(".wallet2").hide();
+                                               });
+                                               
+                                               $("#credit").click(function(){
+                                                    $(".debit").hide();
+                                                    $(".credit").show();
+                                                    $(".wallet2").hide();
+                                               });
+                                               
+                                               $("#wallet2").click(function(){
+                                                    $(".debit").hide();
+                                                    $(".credit").hide();
+                                                    $(".wallet2").show();
+                                               });
+                                            });
+                                        </script>
+                                        <h2>Chose your payment options</h2>
+                                        <input type="radio" name="pay_to" id="debit"><label>Use Debit Card</label>
+                                        <input type="radio" name="pay_to" id="credit"><label>Use Credit Card</label>
+                                        <input type="radio" name="pay_to" id="wallet2"><label>Use Wallet</label>
+                                        <div class="debit">
+                                            <h4 style="color: #00802b;">Using Your Debit Card</h4>
+                                            <?php
+                                            $show_debit2 = mysqli_query($connect, "select *from debit where phone = $login_session");
+                                            $row2 = mysqli_fetch_array($show_debit2, MYSQLI_ASSOC);
+                                            $count2 = mysqli_num_rows($show_debit2);
+                                            
+                                            if($count2>=1){
+                                                $show_debit3 = mysqli_query($connect, "select *from debit where phone = $login_session");
+                                                $pay1 = mysqli_query($connect, "select *from debit where phone = $login_session");
+                                                while($res2 = mysqli_fetch_array($pay1)){
+                                                    $pay_form2 = true;
+                                                }
+                                            }else{
+                                                echo '<h4 style="color: red"> *Debit Card Not Found</h4>';
+                                            }
+                                            
+                                            /*fetch details of debit card*/
+                                            if($pay_form2 == true){
+                                                $find_debit2 = mysqli_query($connect, "select *from debit where phone = $login_session");
+                                                while($find2 = mysqli_fetch_array($find_debit2)){
+                                                    echo '<form action="#" name="my_pay_form" method="post">';
+                                                    echo '<input type="text" placeholder="Enter Account Number" name="acno" style="padding : 8px 10px; border-radius: 5px; width: 15%;" required >&nbsp;&nbsp;';
+                                                    echo '<input type="text" placeholder="Enter Amount" name="amt" style="padding : 8px 10px; border-radius: 5px; width: 10%;" required ><br/><br/>';
+                                                    echo '<i class="fa fa-credit-card" style="font-size:24px"></i>';                                                
+                                                    echo "<input type='hidden' value=".$find2['id']." name = 'id' />";
+                                                    echo "<input type='hidden' value=".$find2['bankname']." name = 'bankname'/>";
+                                                    echo "<input type='hidden' value=".$find2['cardno']." name = 'cardno'/>";
+                                                    echo "<input type='hidden' value=".$cur." name = 'balance'/>";
+                                                    echo "&nbsp;&nbsp;".$find2['bankname']."&nbsp;&nbsp;";
+                                                    echo "A/C ".$find2['cardno']."&nbsp;&nbsp;";
+                                                    echo '<input type="text" name="cvv" placeholder="CVV" required style="padding : 8px 10px; border-radius: 5px; width: 5%;" />&nbsp;&nbsp;';
+                                                    echo '<input type="password" name="pin" placeholder="Pin" required style="padding : 8px 10px; border-radius: 5px; width: 5%;" />&nbsp;&nbsp;';
+                                                    echo "<input type='submit' value='Pay' name = 'pay' style='padding: 8px 10px; border: none; border-radius: 5px; color: white; font-weight: bold; background-color: green; cursor: pointer;' />";
+                                                    echo '</form>';
+                                                }
+                                            }
+                                            ?>
+                                        </div>
+                                        <div class="credit">
+                                            <h4 style="color: #00802b;">Using Your Credit</h4>
+                                            <?php
+                                            $show_debit2 = mysqli_query($connect, "select *from credit where phone = $login_session");
+                                            $row2 = mysqli_fetch_array($show_debit2, MYSQLI_ASSOC);
+                                            $count2 = mysqli_num_rows($show_debit2);
+                                            
+                                            if($count2>=1){
+                                                $show_debit3 = mysqli_query($connect, "select *from credit where phone = $login_session");
+                                                $pay1 = mysqli_query($connect, "select *from credit where phone = $login_session");
+                                                while($res2 = mysqli_fetch_array($pay1)){
+                                                    $pay_form2 = true;
+                                                }
+                                            }else{
+                                                echo '<h4 style="color: red">*Credit Card not Found</h4>';
+                                            }
+                                            
+                                            /*fetch details of debit card*/
+                                            if($pay_form2 == true){
+                                                $find_debit2 = mysqli_query($connect, "select *from credit where phone = $login_session");
+                                                while($find2 = mysqli_fetch_array($find_debit2)){
+                                                    echo $find2['bankname'];
+                                                }
+                                            }
+                                            ?>
+                                        </div>
+                                        <div class="wallet2">
+                                            <h4 style="color: #00802b;">Wallet</h4>
+                                            <?php 
+                                $result = mysqli_query($connect, "select *from wallet where phone = $login_session");
+                                
+                                $row = mysqli_fetch_array($result, MYSQLI_ASSOC);
+                                $count = mysqli_num_rows($result);
+                                
+                                if($count == 1){
+                                    $balance_check = mysqli_query($connect, "select *from wallet where phone = $login_session");
+                                    while($res = mysqli_fetch_array($balance_check)){
+                                        echo '<h4>Your Current Wallet Balance is : <i class="fa fa-rupee"></i> <font color="blue"> '.$res['balance'].'</font></h4>';
+                                                    echo '<form action="#" name="my_pay_form" method="post">';
+                                                    echo '<input type="text" placeholder="Enter Account Number" name="acno" style="padding : 8px 10px; border-radius: 5px; width: 15%;" required >&nbsp;&nbsp;';
+                                                    echo '<input type="text" placeholder="Enter Amount" name="amt" style="padding : 8px 10px; border-radius: 5px; width: 10%;" required >&nbsp;&nbsp;';
+                                                    echo "<input type='submit' value='Pay' name = 'pay' style='padding: 8px 10px; border: none; border-radius: 5px; color: white; font-weight: bold; background-color: green; cursor: pointer;' /><br/>";
+                                                    echo '<label style="color : red;" class=""></label>';
+                                                    echo '</form>';
+                                    }
+                                }else{
+                                    echo '<h4 style=" color : red;">Your Wallet is not active</h4>';
+                                    echo 'To activate click on .... <a href="activate.php">Activate</a>';
+                                }
+                            ?>
+                                        </div>
+                                    </div>
+                                </div>
+                                <div class="mobile">
+                                    
+                                </div>
+                            </div>
                         </div>
                     </div>
                     <div>
