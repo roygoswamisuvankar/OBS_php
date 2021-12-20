@@ -71,7 +71,7 @@ and open the template in the editor.
                                                         
                             <input type="submit" value="Login" name="login" ng-disabled="myform.$invalid" /> &nbsp;&nbsp;&nbsp;&nbsp; <a href="index.html" class="cancel" >Cancel</a>
                         </form>
-                        <br/><a href="#">Forgot Password?</a>
+                        <br/><a href="forgot.php">Forgot Password?</a>
                     </div>
                     <div class="regis_sec">
                         <form action="createaccount.php" method="post" ng-app="myapp" ng-controller="validctrl" name="myform" novalidate>

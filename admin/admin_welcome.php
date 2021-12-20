@@ -69,7 +69,7 @@ and open the template in the editor.
                         <a href="#"><div class="line"></div></a>
                         <a href="#about" id="newapp">New Applications</a>
                         <a href="#services" id="approved">Approved Applications</a>
-                        <a href="#clients" id="customers">Find Customer</a>
+                        <!--<a href="#clients" id="customers">Find Customer</a>-->
                         <a href="#History" id="history">Login History</a>
                         
                      </div>
@@ -147,6 +147,7 @@ and open the template in the editor.
                             <th>Contact Number</th>
                             <th>Approved By</th>
                             <th>Approval Time</th>
+                            <th>More</th>
                             </thead>
                             <tbody>
                                 <?php
@@ -158,6 +159,7 @@ and open the template in the editor.
                                         echo '<td>'.$res1['phone'].'</td>';
                                         echo '<td>'.$res1['byname'].'</td>';
                                         echo '<td>'.$res1['datetime'].'</td>';
+                                        echo "<td><a href=\"showdetails.php?id=$res1[id]\">Details</a></td>";
                                         echo '</tr>';
                                         
                                        

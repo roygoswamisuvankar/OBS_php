@@ -52,7 +52,7 @@ and open the template in the editor.
                 $status = 'Failed';
                 $mode = 'Debit';
                 
-                $insertinto = mysqli_query($connect, "insert into transaction(tran_id, method, cardno, phone, datetime, status, purpose) values('$tran_id','$mode','$cardno','$login_session','$date','$status','$purpose')");
+                $insertinto = mysqli_query($connect, "insert into transaction(tran_id, method, cardno, phone, datetime, status, purpose, amount) values('$tran_id','$mode','$cardno','$login_session','$date','$status','$purpose','$curbalance')");
                 
                 echo '<script>swal({
                                       title: "Error!",
@@ -67,7 +67,7 @@ and open the template in the editor.
                 $status = 'Failed';
                 $mode = 'Debit';
                 
-                $insertinto = mysqli_query($connect, "insert into transaction(tran_id, method, cardno, phone, datetime, status, purpose) values('$tran_id','$mode','$cardno','$login_session','$date','$status','$purpose')");
+                $insertinto = mysqli_query($connect, "insert into transaction(tran_id, method, cardno, phone, datetime, status, purpose, amount) values('$tran_id','$mode','$cardno','$login_session','$date','$status','$purpose','$curbalance')");
                 
                 echo '<script>swal({
                                       title: "Error!",
@@ -82,9 +82,12 @@ and open the template in the editor.
                 $status = 'Success';
                 $mode = 'Debit';
                 
-                $insertinto = mysqli_query($connect, "insert into transaction(tran_id, method, cardno, phone, datetime, status, purpose) values('$tran_id','$mode','$cardno','$login_session','$date','$status','$purpose')");
+                $insertinto = mysqli_query($connect, "insert into transaction(tran_id, method, cardno, phone, datetime, status, purpose, amount) values('$tran_id','$mode','$cardno','$login_session','$date','$status','$purpose','$curbalance')");
                 $sum = $previous_bal + $curbalance;
                 $insertbal = mysqli_query($connect,"update wallet set balance = $sum where phone = $login_session");
+                
+                $for_purpose = 'Credit';
+                $insert_wallet_his = mysqli_query($connect, "insert into wallet_statement(tran_id, phone, datetime, purpose, amount) values('$tran_id','$login_session','$date','$for_purpose','$curbalance')");
                 
                 echo '<script>swal({
                                       title: "Success!",

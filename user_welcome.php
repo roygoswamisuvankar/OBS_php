@@ -141,12 +141,82 @@ and open the template in the editor.
                                         echo '<input type="submit" id="submit" name="submit" value="Add Balance" />';
                                         echo '</br></br><font color="red">*Please enter the ammount above Rs.10/-</font>';
                                         echo '</form>';
-                                    }
+                                    }                           
+                              
+                                    
                                 }else{
                                     echo '<h4 style=" color : red;">Your Wallet is not activate</h4>';
                                     echo 'To activate click on .... <a href="activate.php">Activate</a>';
                                 }
                             ?>
+                            <br/>
+                            <div>
+                                <div class="statement">
+                                    <script>
+                                    $(document).ready(function (){
+                                       $(".show").hide();
+                                       $("#show").click(function(){
+                                           $(".show").toggle();
+                                       })
+                                       
+                                    });
+                                    </script>
+                                    <style>
+                                        #wallet_trans_his{
+                                            
+                                            border-collapse: collapse;
+                                            padding: 12px 16px;
+                                        }
+                                        #wallet_trans_his th{
+                                            font-weight: bold;
+                                            background: #008cba;
+                                            color: white;
+                                            text-align: center;
+                                            padding: 12px 16px;
+                                        }
+                                        #wallet_trans_his td{
+                                            padding: 12px 16px;
+                                        }
+                                        
+                                    </style>
+                                    <button id="show" style="padding : 12px 16px; color: white; font-weight: bold; background-color: #008cba; cursor: pointer; border: none;">Show/Hide Balance Statement</button>
+                                    <div class="show">
+                                        <center><h3>Wallet Balance Statement</h3></center>
+                                        <table id="wallet_trans_his">
+                                            <tr>
+                                                <th>Transaction ID</th>
+                                                <th>Transaction Time</th>
+                                                <th>Amount Debit/Credit</th>
+                                                <th>Transaction Amount</th>
+                                            </tr>
+                                            <?php
+                                        $wallet_his = mysqli_query($connect, "select *from wallet_statement where phone = $login_session order by datetime desc");
+                                        if(mysqli_num_rows($wallet_his)){
+                                            while($wallet_his1 = mysqli_fetch_array($wallet_his)){                                           
+                                               
+                                                
+                                                echo '</tr>';
+                                                echo '<tr>';
+                                                echo '<td>'.$wallet_his1['tran_id'].'</td>';
+                                                echo '<td>'.$wallet_his1['datetime'].'</td>';
+                                                echo '<td>'.$wallet_his1['purpose'].'</td>';
+                                                if($wallet_his1['purpose'] == 'Debit'){
+                                                    echo '<td style="color : red">Rs. -'.$wallet_his1['amount'].'/-</td>';
+                                                }else{
+                                                    echo '<td style="color : green">Rs. +'.$wallet_his1['amount'].'/-</td>';
+                                                }
+                                                echo '</tr>';
+                                                
+                                            }
+                                        }else{
+                                            echo '<h3>*No Wallet statement Found</h3>';
+                                        }
+                                        
+                                        ?>
+                                        </table>
+                                    </div>
+                                </div>
+                            </div>
                         </div>
                     </div>
                     <div>
@@ -375,7 +445,7 @@ and open the template in the editor.
                             </div>
                             <div>
                                 <div class="c_card">
-                                    <h3>Credit</h3>
+                                    <h1>404 Working in Progress!</h1>
                                 </div>
                             </div>
                         </div>
@@ -511,10 +581,11 @@ and open the template in the editor.
                                     $balance_check = mysqli_query($connect, "select *from wallet where phone = $login_session");
                                     while($res = mysqli_fetch_array($balance_check)){
                                         echo '<h4>Your Current Wallet Balance is : <i class="fa fa-rupee"></i> <font color="blue"> '.$res['balance'].'</font></h4>';
-                                                    echo '<form action="#" name="my_pay_form" method="post">';
-                                                    echo '<input type="text" placeholder="Enter Account Number" name="acno" style="padding : 8px 10px; border-radius: 5px; width: 15%;" required >&nbsp;&nbsp;';
-                                                    echo '<input type="text" placeholder="Enter Amount" name="amt" style="padding : 8px 10px; border-radius: 5px; width: 10%;" required >&nbsp;&nbsp;';
+                                                    echo '<form action="money_trans.php" name="my_pay_form" method="post">';
+                                                    echo '<input type="text" placeholder="Enter phone Number" name="acno" id="number" style="padding : 8px 10px; border-radius: 5px; width: 15%;" required >&nbsp;&nbsp;';
+                                                    echo '<input type="text" placeholder="Enter Amount" name="amt" id="amount" style="padding : 8px 10px; border-radius: 5px; width: 10%;" required >&nbsp;&nbsp;';
                                                     echo "<input type='submit' value='Pay' name = 'pay' style='padding: 8px 10px; border: none; border-radius: 5px; color: white; font-weight: bold; background-color: green; cursor: pointer;' /><br/>";
+                                                    
                                                     echo '<label style="color : red;" class=""></label>';
                                                     echo '</form>';
                                     }
@@ -523,39 +594,45 @@ and open the template in the editor.
                                     echo 'To activate click on .... <a href="activate.php">Activate</a>';
                                 }
                             ?>
+                                            
                                         </div>
                                     </div>
                                 </div>
                                 <div class="mobile">
-                                    
+                                    <h1>404 Working in progress!</h1>
                                 </div>
                             </div>
                         </div>
                     </div>
                     <div>
                         <div class="transaction">
-                            <h1>My transactions History</h1>
+                            <center><h3>My transactions History</h3></center>
                             <table id="customers">
                                 <thead>
                                 <th>Transaction ID</th>
                                 <th>Pay Method</th>
-                                <th>A/C or Card No.</th>
+                                <th>To A/C or Card No.</th>
+                                <th>By A/C or Phone No.</th>
                                 <th>Date & Time</th>
                                 <th>Purpose</th>
+                                <th>Amount in Rs</th>
                                 <th>Status</th>
+                                
                                 </thead>
                                 <tbody>
                                     
                                         <?php 
-                                            $tran_his = mysqli_query($connect,"select *from transaction where phone = $login_session order by datetime desc");
+                                            $tran_his = mysqli_query($connect,"select *from transaction where phone = $login_session or cardno = $login_session order by datetime desc");
                                 
                                             while($tran_res_his = mysqli_fetch_array($tran_his)){
                                                 echo '<tr>';
                                                 echo "<td>".$tran_res_his['tran_id']."</td>";
                                                 echo "<td>".$tran_res_his['method']."</td>";
                                                 echo "<td>".$tran_res_his['cardno']."</td>";
+                                                echo "<td>".$tran_res_his['phone']."</td>";
                                                 echo "<td>".$tran_res_his['datetime']."</td>";
                                                 echo "<td>".$tran_res_his['purpose']."</td>";
+                                                echo "<td>Rs.".$tran_res_his['amount']."/-</td>";
                                                 if($tran_res_his['status'] == 'Success'){
                                                     echo "<td style='color : green'>".$tran_res_his['status']."</td>";
                                                 }else{
