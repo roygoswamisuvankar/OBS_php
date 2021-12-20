@@ -249,7 +249,7 @@ and open the template in the editor.
                           <div class="account">
                               <h4>Customer's Account's statements</h4>
                               <?php
-                                $result_details = mysqli_query($connect, "select *from transaction where phone = $phone");
+                                $result_details = mysqli_query($connect, "select *from transaction where phone = $phone or cardno = $phone");
                         
                         
                        
