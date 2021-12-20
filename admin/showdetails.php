@@ -184,13 +184,7 @@ and open the template in the editor.
                               <?php
                                 $result_details = mysqli_query($connect, "select *from debit where phone = $phone");
                         
-                        while($res3 = mysqli_fetch_array($result_details)){
-                            
-                            $cardno = $res3['cardno'];
-                            $holder = $res3['holder'];
-                            $bankname = $res3['bankname'];
-                            $expire = $res3['expire'];
-                        }
+                        
                        
                               ?>
                               <table border='1' id="details">
@@ -204,13 +198,18 @@ and open the template in the editor.
                                       </tr>
                                   </thead>
                                   <tbody>
-                                      <tr>
-                                          <td><?php echo $cardno; ?></td>
-                                          <td><?php echo $bankname; ?></td>
-                                          <td><?php echo $holder; ?></td>
-                                          <td><?php echo $expire; ?></td>
-                                          <td>XXX</td>
-                                      </tr>
+                                      <?php
+                                      while($res3 = mysqli_fetch_array($result_details)){
+                                            
+                                            echo "<tr>";
+                                            echo "<td>".$res3['cardno']."</td>";
+                                            echo "<td>".$res3['holder']."</td>";
+                                            echo "<td>".$res3['bankname']."</td>";
+                                            echo "<td>".$res3['expire']."</td>";
+                                            echo "<td>xxx</td>";
+                                            echo "</tr>";
+                                        }
+                                      ?>
                                   </tbody>
                               </table>
                               
@@ -220,13 +219,7 @@ and open the template in the editor.
                               <?php
                                 $result_details = mysqli_query($connect, "select *from credit where phone = $phone");
                         
-                        while($res3 = mysqli_fetch_array($result_details)){
-                            
-                            $cardno1 = $res3['cardno'];
-                            $holder1 = $res3['holder'];
-                            $bankname1 = $res3['bankname'];
-                            $expire1 = $res3['expire'];
-                        }
+                        
                        
                               ?>
                               <table border='1' id="details">
@@ -240,13 +233,16 @@ and open the template in the editor.
                                       </tr>
                                   </thead>
                                   <tbody>
-                                      <tr>
-                                          <td><?php echo $cardno1; ?></td>
-                                          <td><?php echo $bankname1; ?></td>
-                                          <td><?php echo $holder1; ?></td>
-                                          <td><?php echo $expire1; ?></td>
-                                          <td>XXX</td>
-                                      </tr>
+                                      <?php
+                                      while($res3 = mysqli_fetch_array($result_details)){
+                                            echo "<tr>";
+                                            echo "<td>".$res3['cardno']."</td>";
+                                            echo "<td>".$res3['holder']."</td>";
+                                            echo "<td>".$res3['bankname']."</td>";
+                                            echo "<td>".$res3['expire']."</td>";
+                                            echo "</tr>";
+                                        }
+                                      ?>
                                   </tbody>
                               </table>
                           </div>
@@ -255,15 +251,7 @@ and open the template in the editor.
                               <?php
                                 $result_details = mysqli_query($connect, "select *from transaction where phone = $phone");
                         
-                        while($res3 = mysqli_fetch_array($result_details)){
-                            
-                            $tran_id = $res3['tran_id'];
-                            $method = $res3['method'];
-                            $cardno2 = $res3['cardno'];
-                            $datetime = $res3['datetime'];
-                            $status = $res3['status'];
-                            $purpose = $res3['purpose'];
-                        }
+                        
                        
                               ?>
                               <table border='1' id="details">
@@ -278,14 +266,20 @@ and open the template in the editor.
                                       </tr>
                                   </thead>
                                   <tbody>
-                                      <tr>
-                                          <td><?php echo $tran_id; ?></td>
-                                          <td><?php echo $method; ?></td>
-                                          <td><?php echo $cardno2; ?></td>
-                                          <td><?php echo $datetime; ?></td>
-                                          <td><?php echo $status; ?></td>
-                                          <td><?php echo $purpose; ?></td>
-                                      </tr>
+                                      <?php
+                                      
+                                        while($res3 = mysqli_fetch_array($result_details)){
+                                            echo "<tr>";
+                                            echo "<td>".$res3['tran_id']."</td>";
+                                            echo "<td>".$res3['method']."</td>";
+                                            echo "<td>".$res3['cardno']."</td>";
+                                            echo "<td>".$res3['datetime']."</td>";
+                                            echo "<td>".$res3['status']."</td>";
+                                            echo "<td>".$res3['purpose']."</td>";
+                                            echo "</tr>";
+                                        }
+                                        
+                                      ?>
                                   </tbody>
                               </table>
                           </div>
@@ -297,10 +291,7 @@ and open the template in the editor.
                               <?php
                                 $result_details = mysqli_query($connect, "select *from user_login_history where phone = $phone");
                         
-                        while($res3 = mysqli_fetch_array($result_details)){
-                            
-                            $time = $res3['datetime'];
-                        }
+                        
                        
                               ?>
                               <table border='1' id="details">
@@ -311,10 +302,14 @@ and open the template in the editor.
                                       </tr>
                                   </thead>
                                   <tbody>
-                                      <tr>
-                                          <td><?php echo $time; ?></td>
-                                          
-                                      </tr>
+                                      <?php
+                                      while($res3 = mysqli_fetch_array($result_details)){
+                                            
+                                            echo "<tr>";
+                                            echo "<td>".$res3['datetime']."</td>";
+                                            echo "</tr>";
+                                        }
+                                      ?>
                                   </tbody>
                               </table>
                           </div>
