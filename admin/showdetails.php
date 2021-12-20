@@ -259,7 +259,8 @@ and open the template in the editor.
                                       <tr>
                                           <th>Transaction ID</th>
                                           <th>Transaction Method</th>
-                                          <th>Transaction Number</th>
+                                          <th>To Transaction</th>
+                                          <th>Transaction By</th>
                                           <th>Transaction Time</th>
                                           <th>Transaction Status</th>
                                           <th>Transaction Purpose</th>
@@ -273,6 +274,7 @@ and open the template in the editor.
                                             echo "<td>".$res3['tran_id']."</td>";
                                             echo "<td>".$res3['method']."</td>";
                                             echo "<td>".$res3['cardno']."</td>";
+                                            echo "<td>".$res3['phone']."</td>";
                                             echo "<td>".$res3['datetime']."</td>";
                                             echo "<td>".$res3['status']."</td>";
                                             echo "<td>".$res3['purpose']."</td>";
