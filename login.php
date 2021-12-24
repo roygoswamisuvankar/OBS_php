@@ -13,7 +13,8 @@ and open the template in the editor.
         <script src="https://ajax.googleapis.com/ajax/libs/angularjs/1.6.9/angular.min.js"></script>
         <script src="https://code.jquery.com/jquery-1.12.4.min.js"></script>
         <script src="https://code.jquery.com/jquery-3.6.0.js"></script>
-        
+        <meta name='viewport' content='width=device-width, initial-scale=1'>
+        <script src='https://kit.fontawesome.com/a076d05399.js' crossorigin='anonymous'></script>
         <script src="script/script.js" type="text/javascript"></script>
         <link href="css/style1.css" rel="stylesheet" type="text/css"/>
         <script src="https://unpkg.com/sweetalert/dist/sweetalert.min.js"></script>
@@ -38,6 +39,10 @@ and open the template in the editor.
                 font-weight: bold;
                 border-radius: 5px;
             }
+            .in{
+                padding: 12px 16px;
+                border: 1px solid black;
+            }
         </style>
     </head>
     <body ng-app="rootApp">
@@ -58,18 +63,23 @@ and open the template in the editor.
                 <div>
                     <div class="login_sec">
                         <form action="user_login.php" method="post" name="myform" ng-app="myapp1" ng-controller="validcontrol" novalidate >
-                            <input type="text" name="username" placeholder="Enter your Phone Number " ng-model="usename" ng-pattern="/^\+?\d{10}$/" maxlength="10" required/><br/>
-                             <span style="color: red" ng-show="myform.username.$dirty && myform.username.$invalid">
+                            
+                            <div class="in"><i style='font-size:24px' class='far'>&#xf2bd;</i>
+                                <input type="text" name="username" placeholder="Enter your Phone Number " ng-model="usename" ng-pattern="/^\+?\d{10}$/" maxlength="10" style="border : none; font-size: 15px;" required/><br/>
+                            </div> 
+                            <span style="color: red" ng-show="myform.username.$dirty && myform.username.$invalid">
                                 <span ng-show="myform.username.$error.required">*Phone Number is required</span>
                                 <span ng-show="myform.username.$error.pattern" >*Enter valid Contact Number</span>
-                             </span><br/>
+                             </span><br/><br/>
                             
-                             <input type="password" name="pass" placeholder="Enter your password" ng-model="pass" required=""/><br/>
-                            <span style="color: red" ng-show="myform.pass.$dirty && myform.pass.$invalid">
+                             <div class="in"><i class='fas fa-unlock-alt' style='font-size:24px'></i>
+                                 <input type="password" name="pass" placeholder="Enter your password" ng-model="pass" required="" style="border: none; font-size: 15px;" /><br/>
+                             </div>
+                             <span style="color: red" ng-show="myform.pass.$dirty && myform.pass.$invalid">
                                 <span ng-show="myform.pass.$error.required">*Password is required</span>
-                            </span><br/>
+                            </span><br/><br/>
                                                         
-                            <input type="submit" value="Login" name="login" ng-disabled="myform.$invalid" /> &nbsp;&nbsp;&nbsp;&nbsp; <a href="index.html" class="cancel" >Cancel</a>
+                            <input type="submit" value="Login" name="login" ng-disabled="myform.$invalid" style="font-size: 15px;" /> &nbsp;&nbsp;&nbsp;&nbsp; <a href="index.html" class="cancel" >Cancel</a>
                         </form>
                         <br/><a href="forgot.php">Forgot Password?</a>
                     </div>

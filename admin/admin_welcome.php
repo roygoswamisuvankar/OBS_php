@@ -69,7 +69,7 @@ and open the template in the editor.
                         <a href="#"><div class="line"></div></a>
                         <a href="#about" id="newapp">New Applications</a>
                         <a href="#services" id="approved">Approved Applications</a>
-                        <!--<a href="#clients" id="customers">Find Customer</a>-->
+                        <a href="find.php" id="customers">Find Customer</a>
                         <a href="#History" id="history">Login History</a>
                         
                      </div>

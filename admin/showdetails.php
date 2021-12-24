@@ -56,6 +56,10 @@ and open the template in the editor.
                   text-align: center;
                   padding: 12px 18px;
               }
+              #details th{
+                  color: white;
+                  background-color: #008cba;
+              }
         </style>
     </head>
     <body>
@@ -247,10 +251,11 @@ and open the template in the editor.
                               </table>
                           </div>
                           <div class="account">
-                              <h4>Customer's Account's statements</h4>
+                              <center><h4>Customer's Transaction's statements</h4></center>
                               <?php
                                 $result_details = mysqli_query($connect, "select *from transaction where phone = $phone or cardno = $phone");
-                        
+                                
+                                $wallet_details = mysqli_query($connect, "select *from wallet_statement where phone = $phone");
                         
                        
                               ?>
@@ -264,6 +269,7 @@ and open the template in the editor.
                                           <th>Transaction Time</th>
                                           <th>Transaction Status</th>
                                           <th>Transaction Purpose</th>
+                                          <th>Transaction Amount</th>
                                       </tr>
                                   </thead>
                                   <tbody>
@@ -278,9 +284,35 @@ and open the template in the editor.
                                             echo "<td>".$res3['datetime']."</td>";
                                             echo "<td>".$res3['status']."</td>";
                                             echo "<td>".$res3['purpose']."</td>";
+                                            echo "<td>Rs.".$res3['amount']."/-</td>";
                                             echo "</tr>";
                                         }
                                         
+                                      ?>
+                                  </tbody>
+                              </table>
+                              <center><h4>Wallet statement</h4></center>
+                              <table border="1" id="details">
+                                  <thead>
+                                      <tr>
+                                          <th>Transaction ID</th>
+                                          <th>Transaction BY</th>
+                                          <th>Transaction Time</th>
+                                          <th>Transaction Purpose</th>
+                                          <th>Transaction Amount</th>
+                                      </tr>
+                                  </thead>
+                                  <tbody>
+                                      <?php
+                                        while($res4 = mysqli_fetch_array($wallet_details)){
+                                            echo "<tr>";
+                                            echo "<td>".$res4['tran_id']."</td>";
+                                            echo "<td>".$res4['phone']."</td>";
+                                            echo "<td>".$res4['datetime']."</td>";
+                                            echo "<td>".$res4['purpose']."</td>";
+                                            echo "<td>Rs.".$res4['amount']."/-</td>";
+                                            echo "</tr>";
+                                        }
                                       ?>
                                   </tbody>
                               </table>

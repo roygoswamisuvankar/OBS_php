@@ -16,12 +16,14 @@ and open the template in the editor.
         <script src="https://code.jquery.com/jquery-3.6.0.js"></script>
         <script src="https://unpkg.com/sweetalert/dist/sweetalert.min.js"></script>
         <script src="https://unpkg.com/sweetalert/dist/sweetalert.min.js"></script>
+        <script src='https://kit.fontawesome.com/a076d05399.js' crossorigin='anonymous'></script>
         <script>
             var app = angular.module('myapp', []);
             app.controller('validctrl', function($scope){
                 
             });
         </script>
+        
     </head>
     <body>
         <?php
@@ -71,12 +73,18 @@ and open the template in the editor.
             <div class="container">
                 <form action="admin_login.php" method="post" name="myform" ng-app="myapp" ng-controller="validctrl" novalidate >
                     
-                    <input type="text" name="id" placeholder="Please enter your ID" autocomplete="off" ng-model="id" required /><br/>
+                    
+                    <input type="text" name="id" placeholder="Please enter your ID" autocomplete="off" ng-model="id" required />
+                    
+                    <br/>
                     <span style="color: red" ng-show="myform.id.$dirty && myform.id.$invalid">
                         <span ng-show="myform.id.$error.required">*Please provide your user ID</span>
                     </span><br/>
                     
-                    <input type="password" name="pass" placeholder="Please enter your password" ng-model="pass" required /><br/>
+                    
+                    <input type="password" name="pass" placeholder="Please enter your password" ng-model="pass" required />
+                    
+                    <br/>
                     <span style="color: red" ng-show="myform.pass.$dirty && myform.pass.$invalid">
                         <span ng-show="myform.pass.$error.required">*Please provide your password</span>
                     </span><br/>
